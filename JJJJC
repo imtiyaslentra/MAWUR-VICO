@@ -59,7 +59,7 @@ local function initialize_hit_sound(dataFolderName)
     nurysiumData.Name = dataFolderName
 
     local hitSound = Instance.new('Sound', nurysiumData)
-    hitSound.SoundId = "rbxassetid://17407244385"
+    hitSound.SoundId = "rbxassetid://123456789" -- Ganti dengan ID yang valid
     hitSound.Volume = 5 -- Pastikan volume sesuai rentang yang benar
 end
 
