@@ -55,12 +55,11 @@ local closest_Entity = nil
 local originalParryRemote
 local originalResolveParryRemote 
 
-local function initialize_hit_sound(dataFolder_name)
-    nurysium_Data = Instance.new('Folder', CoreGui)
+function initializate(dataFolder_name: string)
+    local nurysium_Data = Instance.new('Folder', game:GetService('CoreGui'))
     nurysium_Data.Name = dataFolder_name
 
     hit_Sound = Instance.new('Sound', nurysium_Data)
-    hit_Sound.SoundId = 'rbxassetid://8632670510'
     hit_Sound.Volume = 5
 end
 
@@ -136,14 +135,12 @@ local aura_table = {
 
 if ReplicatedStorage:FindFirstChild('Remotes') and ReplicatedStorage.Remotes:FindFirstChild('ParrySuccessAll') then
     ReplicatedStorage.Remotes.ParrySuccessAll.OnClientEvent:Connect(function()
-        aura_table.hit_Count = aura_table.hit_Count + 1
-        task.delay(0.15, function()
-            aura_table.hit_Count = aura_table.hit_Count - 1
-        end)
-    end)
-else
-    warn("ReplicatedStorage.Remotes.ParrySuccessAll not found.")
-end
+	aura_table.hit_Count += 1
+
+	task.delay(0.185, function()
+		aura_table.hit_Count -= 1
+	end)
+end)
 
 if Workspace:FindFirstChild("Balls") then
     Workspace.Balls.ChildRemoved:Connect(function(child)
