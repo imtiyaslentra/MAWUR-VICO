@@ -55,13 +55,13 @@ local closest_Entity = nil
 local originalParryRemote
 local originalResolveParryRemote 
 
-local function initialize_hit_sound(dataFolder_name)
-    nurysium_Data = Instance.new('Folder', CoreGui)
-    nurysium_Data.Name = dataFolder_name
+local function initialize_hit_sound(dataFolderName)
+    local nurysiumData = Instance.new('Folder', CoreGui)
+    nurysiumData.Name = dataFolderName
 
-    hit_Sound = Instance.new('Sound', nurysium_Data)
-    hit_Sound.SoundId = 'rbxassetid://6349641063'
-    hit_Sound.Volume = 5
+    local hitSound = Instance.new('Sound', nurysiumData)
+    hitSound.SoundId = "rbxassetid://17407244385"
+    hitSound.Volume = 5 -- Pastikan volume sesuai rentang yang benar
 end
 
 local function get_closest_entity(object)
