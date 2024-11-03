@@ -32,13 +32,13 @@ local local_player = Players.LocalPlayer
 local camera = Workspace.CurrentCamera
 
 -- Global Variables
-getgenv().aura_Enabled = false
+getgenv().aura_Enabled = true
 getgenv().hit_sound_Enabled = false
 getgenv().hit_effect_Enabled = false
 getgenv().optimize_Enabled = false
-getgenv().autoSpam_Enabled = false
+getgenv().autoSpam_Enabled = true
 getgenv().antiCurve_Enabled = false
-getgenv().visualizer_Enabled = false
+getgenv().visualizer_Enabled = true
 
 -- Learning Data Initialization
 local learningData = {
@@ -135,12 +135,14 @@ local aura_table = {
 
 if ReplicatedStorage:FindFirstChild('Remotes') and ReplicatedStorage.Remotes:FindFirstChild('ParrySuccessAll') then
     ReplicatedStorage.Remotes.ParrySuccessAll.OnClientEvent:Connect(function()
-	aura_table.hit_Count += 1
-
-	task.delay(0.185, function()
-		aura_table.hit_Count -= 1
-	end)
-end)
+        aura_table.hit_Count = aura_table.hit_Count + 1
+        task.delay(0.15, function()
+            aura_table.hit_Count = aura_table.hit_Count - 1
+        end)
+    end)
+else
+    warn("ReplicatedStorage.Remotes.ParrySuccessAll not found.")
+end
 
 if Workspace:FindFirstChild("Balls") then
     Workspace.Balls.ChildRemoved:Connect(function(child)
